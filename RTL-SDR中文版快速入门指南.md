@@ -293,7 +293,9 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
 #### SDRSharp的插件
 
-你可以在这里找到[SDRSharp官方插件列表](http://www.sdrsharp.com/#plugins)，同样你也可以在这里获得由我们提供的[SDRSharp非官方插件列表](http://www.atouk.com/SDRSharpQuickStart.html)
+你可以在这里找到[SDRSharp官方插件列表](http://www.sdrsharp.com/#plugins)，
+
+同样你也可以在这里获得由我们提供的[SDRSharp非官方插件列表](http://www.atouk.com/SDRSharpQuickStart.html)
 
 #### SDRSharp 用户手册
 
@@ -312,7 +314,7 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
 4. 打开zadig，确保 Options->List All Devices 选项已经打勾；
 
-5. 在下拉菜单中选择“Bulk-In, Interface (Interface 0)”，确保在下方的“Driver”一栏中显示选中了WinUSB，在有些计算机上可能看到的不是bulk in interface，而是RTL2832UHIDIR或者RTL2832U，这也是可以的，但是，**请勿选择USB Receiver (Interface 0)，绝对不要**
+5. 在下拉菜单中选择“Bulk-In, Interface (Interface 0)”，确保在下方的“Driver”一栏中显示选中了WinUSB，在有些计算机上可能看到的不是bulk in interface，而是RTL2832UHIDIR或者RTL2832U，这也是可以的，但是，**!!!请勿选择USB Receiver (Interface 0)，绝对不要!!!**
 
   ![zadig界面](https://www.rtl-sdr.com/wp-content/uploads/2013/04/zadig_3.png)
 

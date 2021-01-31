@@ -26,6 +26,6 @@ If you think this work affends your copyright, please contact me from github, I 
 
 Not aiming at profit earning, it is just a reference guide.
 
-Please be careful before acting and obey laws. Please be responsible for yourself.
+Please obey laws and be careful before acting. Please be responsible for yourself.
 
 Translator will not be responsible for any loss under any circumstance. You know this is Github.

@@ -28,4 +28,4 @@ Not aiming at profit earning, it is just a reference guide.
 
 Please be careful before acting and obey laws. Please be responsible for yourself.
 
-Translator will not be responsible under any circumstance. You know this is Github.
+Translator will not be responsible for any loss under any circumstance. You know this is Github.

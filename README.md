@@ -22,7 +22,7 @@ Translated from an English version from  [this site](https://www.rtl-sdr.com/rtl
 
 The copyright of the English article belongs to the English version author.
 
-If you think this work affends your copyright, please contact me from github, I will delete the article ASAP.
+If you think this work affends your copyright, please contact me from GitHub, I will delete the article ASAP.
 
 Not aiming at profit earning, it is just a reference guide.
 

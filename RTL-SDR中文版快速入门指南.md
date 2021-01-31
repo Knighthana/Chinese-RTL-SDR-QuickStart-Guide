@@ -87,6 +87,8 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
 9. 在下拉菜单中选择“Bulk-In, Interface(Interface 0)”，注意在有些计算机中你将会看到名如“RTL2832UHIDIR”或“RTL2832U”的设备取代了Bulk-In, Interface的位置，出现这种情况的时候，选这个也可以。不要选择**USB Receiver (Interface 0)或者 Interface 1或者这之外的任何选项，不然你会把不该覆写的驱动覆写掉！**，反复检查以确保USB ID项显示“0BDA 2838 00”，表明现在是接收器作为选中的设备；
 
+  （译者在这里再强调一下，仔细看看你是不是选择了正确的驱动，不要在不确认到底选择了什么的情况下乱点下一步，因为乱点的话你可能会把鼠标键盘的驱动搞坏，或者把USB网卡的驱动搞坏，那样你就只能手机发帖求助了，仔细看清楚待选设备是不是“Bulk-In, Interface(Interface 0)”或者RTL2832U一类可以确定是RTL电视棒的东西）
+
 10. 我们需要安装WinUSB驱动，所以请确保右边被绿色箭头指向的方框中WinUSB也被选中了（这应该是默认选项）。
 
     *有人对这一步感到疑惑，这一步的目的是安装WinUSB驱动，所以，箭头左边的方框里是现在安装好的驱动，右边方框里的是下一步中即将要安装的驱动，当你第一次打开Zadig的时候，左边的方框中要么显示“None”，要么就是Windows默认安装的DVB-T驱动（RTL2832UUSB)，显示什么取决于你的系统版本和设置*
@@ -160,7 +162,163 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
   
   另一方面，你应当尝试关掉Windows驱动自动安装，你可以在[此处](https://support.microsoft.com/kb/2500967?wa=wsignin1.0)找到关闭它的指南。如果你的计算机挂起过，那么也有可能发生这样的问题，试着拔掉接收器然后再插上它。
 
+- SDR# 报错 “Unable to load DLL 'rtlsdr': the specified module could not be found. (Exception from HRESULT: 0x8007007E)” （无法加载dll'rtlsdr'：指定的模块无法找到。（错误码：0x8007007E），译者注）
 
+  通常来说安装[VC++运行环境](https://www.microsoft.com/en-us/download/details.aspx?id=8328)将会解决这些问题，一般的计算都已安装了该运行时，但是如果你的电脑刚刚安装了操作系统，那么也许得自己来安装；
+  
+- SDR# 报错 “The application has failed to start because its side-by-side configuration is incorrect” （由于side-by-side配置有误，应用程序未能正常启动）
+
+  如果你正在用64位系统，但是尝试使用32位软件就会出现这个问题（原文 If you are using the x64 version try the x86 version 怎么看都是有两个谓语的病句，如果认为指的是 if you are using the x64 version and you try the x86 version 就可以这么翻译，但是按常理x64系统会兼容x86软件，可以确定的是，这里表达的是系统位数和软件位数不符就会导致这样的报错，译者注），这也许说明你的计算机上的.Net安装有问题，尝试修复或者重装.Net也许会解决这个问题；
+
+
+- 频谱中间有一个常驻的峰消除不掉
+
+  这很正常，是大多数RTL-SDR接收器设计上的一个副作用导致的，这个东西可以被SDR#的算法移除掉，只需要点击 “Correct IQ” 就可以了。如果你用的是E4000型的接收器，那么就点“偏移量调整”。
+
+  （Correct IQ 应指“正交校正”，“I/Q” 在射频中一般指 In-Phase 与 Quadrature ，In-Phase 是同相信号或信号的实部， Quadrature 是正交信号，译者注）
+
+- 我看不见“Bulk-In, Interface (Interface 0)”
+  
+  确保“ Options->List All Devices ”已被勾选，有时候你还得取消掉“ Ignore Hubs or Composite Parents ”的勾选，有些人也提到这里会显示别的RTL开头的名称，像是“RTL2832U”或者“RTL2832UHIDR”一类的，选这些选项也可以，极少数情况下你的接收器的USB功能坏掉了，你需要换一个
+
+  （再次提示，如果你正好用了Realtek家的USB无线网卡，务必确认你没有选中覆写RTL开头的USB无线网卡的驱动，译者再注）
+
+- 插在USB3.0口上不工作
+
+  有些劣质USB3.0控制器对USB2.0设备兼容性不好，通常来说，接收器应该能够在USB3.0口上正常工作，遇到这种情况请更换至USB2.0控制器的插口
+
+- 运行install-rtlsdr.bat的时候提示“The system cannot find the file specified”，也没有下载sdrsharp目录
+
+  这很可能是你没有解压文件导致的，请务必确保你完全解压了所有的文件再运行。
+
+  （如果没有特殊需求，请将压缩文件文件解压之后再用，不要在解压软件窗口里面直接运行压缩包中的程序，这是一个基本且正常的计算机使用习惯，译者注）
+
+- 当我点击了 install-rtlsdr.bat 之后屏幕上闪过一个CMD窗口并且立刻消失了，什么都没有安装
+
+  这应该是一个bug或者是设置出了问题，有些版本的Windows有bug，不能运行批处理文件，解决方案是手动安装，请查看我们提供的这篇说明，了解[如何手动安装sdr](https://www.rtl-sdr.com/manual-installation-of-sdr/)，有些杀毒软件也会阻止这个批处理文件的运行，请关掉杀毒软件或者装一个聪明一点的，或者手动安装。
+
+  （如果遇到cmd窗口一闪而过的情况，至少得搞明白窗口上面本来要提示什么，如果知道了错误提示，问题一般就容易解决了；假如遇到了cmd窗口一闪而过的情况，就应该打开一个空白的cmd窗口，然后在这个窗口中通过敲命令或者拖动bat文件进去的方式来运行 install-rtlsdr.bat ，观察它的运行结果，这样至少可以知道批处理文件报了什么错误，然后对症下药。 ---译者吐槽）
+
+- SDR# 界面看到的信号很小，或者接收不到信号
+
+  先确认你已经滑动过“RF Gain”（射频信号增益）滑块让它增大了，这个滑块可以在“Configure”（配置）按钮中找到；其次，在某些信号不好的地方，室内摆放的增益天线的效率很低，因此尽可能把天线放到露天的高的地方，有时候可能是增益天线到天线插座的连接不牢固导致信号传输极差，在极少数情况中，当你发现别的接收器能正常接收信号但你的接收器收不到信号，那就说明接收器坏了，换一个吧
+
+- SDR# 报错 “ Application failed to initialize properly (0xc0000135).  Click OK to terminate. ”
+
+  这是因为你没有正确安装[ Microsoft .Net Framework ](https://www.microsoft.com/en-us/download/details.aspx?id=48130)
+
+- SDR# 报错 “ Object reference not set to an instance of an object ”
+
+  这说明你没有正确地安装音频设备驱动；或者你禁止了声音输出设备，在Windows声音播放属性里面打开它
+
+- 接收器时不时地断开连接
+
+  首先排查是不是延长线或者集线器的问题：把接收器直接插在计算机的USB口上；如果它还是这样，那么是接收器的问题，换一个
+
+- SDR# 在我的显示器休眠后卡住了
+
+  这要么是SDR#的BUG，要么是Windows的BUG，最简单的解决方案是关掉显示器自动休眠；
+
+- 接收器上面的灯不亮 / 接收器上面的LED不亮
+
+  接收器坏了，换一个；
+
+- 运行SDR#的时候我的计算机CPU负荷有100% / 运行SDR#的时候我的计算机变得很卡
+
+  想要运行SDR#这种有图形用户界面的SDR软件，你至少需要一个双核处理器的计算机，如果你的CPU勉强达到这个水准以上但是还是感到负荷很重，那么就试着把采样频率降低到 1MSPS ，或者更低，减少快速傅里叶变换显示的分辨率（或者直接关掉它），关掉正交校正，减少滤波器等级
+
+  （如果读者的处理器是Intel带“酷睿”二字的，或者是AMD后期的那些农机，那么处理器最少也是双核的，不应该遇到卡顿的问题，如果不是计算机上有病毒或者没必要安装的软件太多导致卡顿的话，去排查一下是不是采样频率过高、FFT显示的分辨率过高或者滤波等级太高导致的问题，译者注1）
+  
+  （如果读者的计算机确实像译者曾经用过的计算机一样不太行，比如处理器是早期奔腾，早期赛扬，或者那些AMD的早期作品，而且暂时也没有经济能力换新机的话，去看看磁盘还有没有地方，可以的话放弃Win7（XP和Vista用户应该没法运行SDR#），腾点地方装个没有图形界面的Linux，比如安装Ubuntu和Fedora的时候选择不安装图形界面，或者用那些默认不带有图形用户界面的发行版，比如Debian或者ArchLinux，然后去找一下Linux版本SDR的教程；至于如何给磁盘腾地方，如何安装Linux，还有Linux怎么用这里篇幅太小不够说，用此处给出的关键词和搜索引擎读者应当能自己完成剩下的部分，译者注2）
+
+  （但是SDR的性能消耗大头应该是数字信号处理部分，图形不图形界面的真的对性能有影响吗？译者吐槽）
+
+- Zadig把我的键盘/鼠标/其他USB设备搞坏了
+
+  这肯定是因为你在zadig页面的下拉菜单里面选择了错误的设备还点下了安装键，所以不要在zadig里面乱点了，确保你在zadig里选择了正确的RTL-SDR设备 (Bulk-In Interface, Interface 0)。想要给其他设备恢复驱动你需要在Windows的设备管理器里面选择那些不能工作的设备，然后点击更新它们的驱动来修复它。
+
+  （关于这个，你得看看这个[救命！Zadig把错误的驱动换掉了，我该怎么办？](https://github.com/pbatard/libwdi/wiki/FAQ#help-zadig-replaced-the-driver-for-the-wrong-device-how-do-i-restore-it)，译者注）
+
+- 我运行诊断工具rtl_test的时候显示我的R820T2是个R820T
+
+  R820T2和R820T是几乎完全相同的电子元件，R820T2用了更高质量的半导体，所以偶然情况下R820T2的最大中频滤波器带宽和R820T有一些微小的不同，一般来说R820T2更好的硅材料让它有更好的表现，产品间的出厂差异也很小，因为它们的电路部分没有任何差异，所以R820T2在计算机看来就是R820T，要想确认它到底是不是R820T2，你需要检查芯片上的标识。
+
+- 我的杀毒软件说SDR#是个病毒
+
+  这绝对是错的！SDR#经常更新，有时候供下载的压缩包每天都会更新，有些破烂杀毒软件会假定任何不经常被人下载的软件文件都是病毒，SDR#更新得过于频繁，可能下载新版本的人不多，因此需要慢慢和杀毒软件公司建立信任。
+
+  （如果是Chrome的话，它几乎会对每个下载的软件都报“这个软件可能会危害你的计算机”，因此如果是Chrome报的可以暂时先别管，如果确实是杀毒软件报的，首先检查一下你下载的途径是不是前面提供的[下载途径](https://www.airspy.com/)，如果不是，那么删掉你下载的文件，在这个airspy网址里面重下，如果你确实是在这里下载的，而且杀毒软件还为此报毒，除非当天他们的服务器遭到攻击并且提供下载的文件被黑客替换了，否则这个软件没理由有病毒，也许是时候换一个杀毒软件了，译者注）
+
+- SDR# 界面中的模式选择按钮有毛病，我按不了
+
+  这可能是由于Windows的“自定义缩放级别”设置导致的，[将这个选项设置为默认值](http://www.tenforums.com/tutorials/5990-dpi-scaling-level-displays-change-windows-10-a.html)也许能够帮助你解决这个问题
+
+  （或者直接点击[打开显示设置](ms-settings:display?activationSource=SMC-IA-4027860)，或者[从微软的网页打开它](https://support.microsoft.com/zh-cn/windows/%E6%9F%A5%E7%9C%8B-windows-10-%E4%B8%AD%E7%9A%84%E6%98%BE%E7%A4%BA%E8%AE%BE%E7%BD%AE-37f0e05e-98a9-474c-317a-e85422daa8bb)，译者注）
+
+- 关闭SDR#的时候，报错“An error occurred loading a configuration file: Access to the path 'C:\Program Files\SDR\s14i12qq.tmp' is denied. (C:\Program Files\SDR\SDRSharp.exe.Config) ---> System.UnauthorizedAccessException: Access to the path 'C:\Program Files\SDR\s14i12qq.tmp' is denied.”
+
+  这通常是因为你将SDR#安装进了一个只读的目录引起的，Windows的“C:\Program Files”目录一般是只读的，为了解决这个问题，你可以把SDR#的文件放在一个不是Program Files的目录里面，比如说“C:\SDR”
+
+  （或者你也可以放进 C:\users\%username%\appdata\local\RTL-SDR 里面，如果不想让磁盘的根目录太乱的话，译者注）
+
+- 我的接收器还带了个遥控器，这是用来干嘛的？
+
+  有些卖家会卖给你接收器的时候会附赠一个遥控器（毕竟这东西叫电视棒嘛，译者吐槽），这个遥控器是用来换台的，它只在接收器用作原来的用途的时候——作为DVB-T 高清电视电视棒的时候起作用，当接收器作为软件定义收音机的一部分的时候，这个遥控器是没用的。
+
+  （接收器能收到遥控器发出的红外线，也许你可以考虑把遥控器拿来做点别的用途？译者吐槽）
+
+- 我想用接收器看DVB-T电视，怎么办？
+
+  （这条我懒得翻了，中国没有DVB-T电视，别试了；如果你人在国外，或者人是其他简体中文区的，可以到[原网站](https://www.rtl-sdr.com/rtl-sdr-quick-start-guide)中的“I want to watch DVB-T with my dongle, how do I do it?”条目查看解决方案，简单来说就是卸载掉现在的驱动，重装一个DVB-T驱动——卖家附赠的或者默认的Windows DVB-T驱动。DVB-T驱动不能和SDR的驱动共存，译者注）
+
+- 我有一个RTL-SDR V3 ，但是高频部分不能工作
+
+  要想获得高频接收，你必须打开直接采样模式，请查看[V3用户手册](https://www.rtl-sdr.com/rtl-sdr-blog-v-3-dongles-user-guide/)获取打开直接采样模式的方法；
+
+- 我在rtl-fm，rtl-test，T型偏置器软件一类的CMD程序页面看到了报错“rtlsdr_demod_write_reg failed with -9”
+
+  这一般来说是你的计算机上的USB口无法正常工作导致的，试试别的USB口。以及确保你的接收器在其他计算机上确实能够正常工作，要是坏了就换一个。
+
+- 我有一块现代的Ryzen（锐龙）主板，上面只有USB3.0/3.1插口，没有软件能检测到接收器，我也没法运行我的RTL-SDR
+
+  这要么是libUSB的BUG，要么是新主板不兼容导致的，我们已经发布了[“rtl-sdr-blog”版的驱动](https://github.com/rtlsdrblog/rtl-sdr-blog/releases)，在SDR#目录里面用我们提供的librtlsdr.dll文件换掉原来的rtlsdr.dll，然后把librtlsdr.dll重命名为rtlsdr.dll，有的人也用[这里发布的已修复的DLL文件](https://www.rtl-sdr.com/forum/viewtopic.php?f=4&t=4411)解决了问题。
+
+  要是你还有问题，欢迎来[我们的论坛](https://www.rtl-sdr.com/forum)的Troubleshooting版块讨论
+
+#### 怎么设置增益
+
+增益可以通过在SDR#中点击那个长得像齿轮一样的配置按钮来设定，调整信号增益以便让你接收到尽可能强的增益，同时保持本底噪声尽可能地低。从低增益开始，慢慢地调大增益滑块，看着频谱，让信号强度增大，然后在本底噪声快要开始升起的时候停止调大增益。
+
+本底噪声指的是频谱中没有信号的部分。
+
+#### SDRSharp的插件
+
+你可以在这里找到[SDRSharp官方插件列表](http://www.sdrsharp.com/#plugins)，同样你也可以在这里获得由我们提供的[SDRSharp非官方插件列表](http://www.atouk.com/SDRSharpQuickStart.html)
+
+#### SDRSharp 用户手册
+
+你可以在这里找到一份[讲述如何使用SDR#以及SDR#各个选项有什么功能的手册](http://www.atouk.com/SDRSharpQuickStart.html)，这里还有一份非常不错的[有插图的SDR#手册](http://tylerwatt12.com/tips-for-using-sdr/)
+
+
+### HDSDR设置指南 （已在Windows XP以及以上版本中测试过）
+
+1. 购买一个RTL-SDR接收器。最便宜也是最棒的是R820T/R820T2电视棒。你可以在这里找到[购买信息](https://www.rtl-sdr.com/buy-rtl-sdr-dvb-t-dongles/)
+
+2. 插入接收器，不要安装任何附带的驱动，如果你之前已经安装了它附带的驱动，先把这些驱动卸载了
+
+3. 在这里[下载Zadig](http://zadig.akeo.ie/)
+
+（下载的时候别忘了看看[Zadig使用常见问题指南](https://github.com/pbatard/libwdi/wiki/FAQ#Zadig)，**一定要打开先看一下！** ——译者注）
+
+4. 打开zadig，确保 Options->List All Devices 选项已经打勾；
+
+5. 在下拉菜单中选择“Bulk-In, Interface (Interface 0)”，确保在下方的“Driver”一栏中显示选中了WinUSB，在有些计算机上可能看到的不是bulk in interface，而是RTL2832UHIDIR或者RTL2832U，这也是可以的，但是，**请勿选择USB Receiver (Interface 0)，绝对不要**
+
+  ![zadig界面](https://www.rtl-sdr.com/wp-content/uploads/2013/04/zadig_3.png)
+
+6. 点击“Install Driver”（安装驱动）。你可能会收到一条提示
+
+...............................................................
 
 ------------------------------------------
 

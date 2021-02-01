@@ -42,10 +42,10 @@
 
 我们建议以如下的顺序阅读相关资料：
 
-1. 快速入门指南：rtl-sdr.com/QSG - 指引你安装软件，部署你的接收器；
-2. V3功能指南：rtl-sdr.com/V3 - 学习如何使用特别的V3功能，例如直接高频采样模式，以及T型偏置器模式；
-3. SDR# 用户指南：rtl-sdr.com/SDRSHARP - 学习SDR#的设置；
-4. 偶极子天线指南：rtl-sdr.com/DIPOLE - 学习如何使用你的RTL-SDR Blog多用途偶极子天线（如果你买了还装了的话）
+1. 快速入门指南：[rtl-sdr.com/QSG](https://rtl-sdr.com/QSG) - 指引你安装软件，部署你的接收器；
+2. V3功能指南：[rtl-sdr.com/V3](https://rtl-sdr.com/V3) - 学习如何使用特别的V3功能，例如直接高频采样模式，以及T型偏置器模式；
+3. SDR# 用户指南：[rtl-sdr.com/SDRSHARP](https://rtl-sdr.com/SDRSHARP) - 学习SDR#的设置；
+4. 偶极子天线指南：[rtl-sdr.com/DIPOLE](https://rtl-sdr.com/DIPOLE) - 学习如何使用你的RTL-SDR Blog多用途偶极子天线（如果你买了还装了的话）
 
 RTL-SDR Blog V3 用户：请注意存在假冒伪劣产品。有奸商在我们的 “RTL-SDR Blog” 品牌下卖各种各样的接收器，蓝色或绿色外壳，或者银色方形盒子每面四颗螺丝（共八颗），或者标榜 “Pro版” 的并非 RTL-SDR 的产品，这些假冒伪劣产品用了低质量的电子元件，还用了廉价的设计，还有可能并不支持所有V3版本的功能，这些假冒伪劣产品不支持新功能，而且我们也不能为它们提供支持，请直接在我们的[商店](www.rtl-sdr.com/store)处购买。
 

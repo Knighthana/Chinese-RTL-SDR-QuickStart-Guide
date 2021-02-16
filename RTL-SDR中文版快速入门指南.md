@@ -318,7 +318,57 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
   ![zadig界面](https://www.rtl-sdr.com/wp-content/uploads/2013/04/zadig_3.png)
 
-6. 点击“Install Driver”（安装驱动）。你可能会收到一条提示
+6. 点击“Install Driver”（安装驱动）。你可能会收到一条有关发布者未经过验证的提示，如果你信任这个软件的话就点击无论如何安装这个驱动，这将安装那些足以让你的接收器转变为软件定义收音机的驱动，注意要是你把接收器挪到别的USB口，或者是想要几个接收器一起用的话，就得再运行zadig.exe一次。
+
+  ![zadig警告]https://www.rtl-sdr.com/wp-content/uploads/2013/04/zadig_warning.png
+
+7. 访问[HDSDR高清软件定义收音机的网站](http://hdsdr.de/)，在底部的下载按钮处下载HDSDR软件；
+
+8. 运行你下载好的安装程序，安装HDSDR软件；
+
+9. 在[HDSDR硬件相关](http://hdsdr.de/hardware.html)页面上方的“RTLSDR (DVB-T/DAB with RTL2832) USB”表项中下载ExtIO_RTL2832U.dll文件，或者直接下载这个[动态链接库文件](http://hdsdr.de/download/ExtIO/ExtIO_RTL2832.dll)
+
+10. 将ExtIO_RTL2832U.dll复制到HDSDR的安装目录（如果你没更改过安装设置，默认的目录应该是 C:\Program Files (x86)\HDSDR （64位Windows）或者 C:\Program Files\HDSDR （32位Windows））
+
+11. 打开HDSDR软件，如果你上一步复制文件的步骤没有出错，那么应该会没有什么提示地顺利打开；但假如弹出一个窗口要求你选择一个dll文件，那么也是正常的，只需要在窗口中选中你在上一步中刚刚复制过来的ExtIO_RTL2832U.dll文件，然后点击“打开”按钮应该就没问题了
+
+  ![HDSDR弹出选择额外硬件的窗口](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image017-1024x554.jpg)
+
+12. 点击底部左下角的Soundcard按钮（或者按下F5键）选择你的输出声卡。最重要的选项是“RX Output (to Speaker)”，将它设置为你想要设置的送话器，或者软件管道；
+  
+  ![声卡设置](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image019.jpg)
+
+13. 点击Bandwidth按钮（或者按下F6键）打开带宽设置，如果想要获得通常的NFM信号（根据[Sigidwiki对NFM的解释](https://www.sigidwiki.com/wiki/NFM_Voice)这应当是指对讲机一类的信号，译者注），将采样率设置为48000Hz，如果想要获得宽带调频信号，例如FM广播信号，将采样率设置为192000Hz。
+
+  ![采样频率](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image021.jpg)
+
+14. 按下Start按钮（或者按下F2键），这样收音机就开始工作了；
+
+15. 如果想要设置RTL-SDR的采样频率、增益、频率校正，点击ExtIO按钮；
+
+  ![ExtIO设置窗口](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image023.jpg)
+
+16. 调整本地振荡器(Local Oscillator)的频率到你感兴趣的频道附近的频率，然后你可以通过点击频谱或者使用台号来调到你想听的频道。
+
+  ![调台按钮](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image024-300x67.jpg)
+
+17. 你可以通过"Zoom"字样左侧的滑条来放大或者缩小频谱；
+
+  ![Zoom滑条](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image025-1024x62.jpg)
+
+18. 你可以通过模式选择按钮来选择所需要的模式；
+
+  ![模式按钮](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image026.jpg)
+
+19. 按下FM模式的按钮以后，调频带宽就可以通过FM-BW滑条手动调整了；
+
+  ![调频带宽滑条](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image027.jpg)
+
+20. 如果想听一个典型的宽频FM广播频道，你得把声音采样频率设置为192000Hz。
+
+  首先你需要点击带宽(Bandwidth)按钮（或者按下F6键），打开带宽设置，这样你就可以调整输出采样率了。
+
+  将输出采样率调整为192000Hz，就能收听FM广播了。
 
 ...............................................................
 

@@ -320,7 +320,7 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
 6. 点击“Install Driver”（安装驱动）。你可能会收到一条有关发布者未经过验证的提示，如果你信任这个软件的话就点击无论如何安装这个驱动，这将安装那些足以让你的接收器转变为软件定义收音机的驱动，注意要是你把接收器挪到别的USB口，或者是想要几个接收器一起用的话，就得再运行zadig.exe一次。
 
-  ![zadig警告]https://www.rtl-sdr.com/wp-content/uploads/2013/04/zadig_warning.png
+  ![zadig警告](https://www.rtl-sdr.com/wp-content/uploads/2013/04/zadig_warning.png)
 
 7. 访问[HDSDR高清软件定义收音机的网站](http://hdsdr.de/)，在底部的下载按钮处下载HDSDR软件；
 

@@ -259,7 +259,7 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
   这通常是因为你将SDR#安装进了一个只读的目录引起的，Windows的“C:\Program Files”目录一般是只读的，为了解决这个问题，你可以把SDR#的文件放在一个不是Program Files的目录里面，比如说“C:\SDR”
 
-  （或者你也可以放进 C:\users\%username%\appdata\local\RTL-SDR 里面，如果不想让磁盘的根目录太乱的话，译者注）
+  （或者你也可以放进 `C:\users\%username%\appdata\local\RTL-SDR` 里面，如果不想让磁盘的根目录太乱的话，译者注）
 
 - 我的接收器还带了个遥控器，这是用来干嘛的？
 

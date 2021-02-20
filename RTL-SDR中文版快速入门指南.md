@@ -253,7 +253,7 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
   这可能是由于Windows的“自定义缩放级别”设置导致的，[将这个选项设置为默认值](http://www.tenforums.com/tutorials/5990-dpi-scaling-level-displays-change-windows-10-a.html)也许能够帮助你解决这个问题
 
-  （或者直接点击打开[显示设置](ms-settings:display?activationSource=SMC-IA-4027860)，或者从[微软的网页]打开它(https://support.microsoft.com/zh-cn/windows/%E6%9F%A5%E7%9C%8B-windows-10-%E4%B8%AD%E7%9A%84%E6%98%BE%E7%A4%BA%E8%AE%BE%E7%BD%AE-37f0e05e-98a9-474c-317a-e85422daa8bb)，译者注）
+  （或者直接点击打开[显示设置](ms-settings:display?activationSource=SMC-IA-4027860)，或者从[微软的网页](https://support.microsoft.com/zh-cn/windows/%E6%9F%A5%E7%9C%8B-windows-10-%E4%B8%AD%E7%9A%84%E6%98%BE%E7%A4%BA%E8%AE%BE%E7%BD%AE-37f0e05e-98a9-474c-317a-e85422daa8bb)打开它，译者注）
 
 - 关闭SDR#的时候，报错“An error occurred loading a configuration file: Access to the path 'C:\Program Files\SDR\s14i12qq.tmp' is denied. (C:\Program Files\SDR\SDRSharp.exe.Config) ---> System.UnauthorizedAccessException: Access to the path 'C:\Program Files\SDR\s14i12qq.tmp' is denied.”
 

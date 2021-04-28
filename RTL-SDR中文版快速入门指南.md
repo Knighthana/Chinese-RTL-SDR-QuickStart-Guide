@@ -374,7 +374,46 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
 为了给RTL-SDR系统安装SDR-RADIO需要按照以下指南操作：
 
-1. 买一个RTL-SDR接收器
+1. 买一个RTL-SDR接收器。最便宜也是最好的选择是R820T/R820T2接收器，此处提供了[购买信息](https://www.rtl-sdr.com/buy-rtl-sdr-dvb-t-dongles/)
+
+2. 插入接收器，不要安装它自带的任何软件，确保“即插即用程序”停止尝试为它自动安装驱动，如果你已经安装了任何它携带的驱动，先卸载它们
+
+3. 前往[Zadig网站](https://zadig.akeo.ie/)下载Zadig
+
+4. 打开Zadig，前往选项->列出所有设备，确保所有选项已被选上
+
+5. 在下拉菜单中选择“Bulk-In, Interface(Interface 0)”，确保旁边写着“Driver”的方框中选中了“WinUSB”。（注意在某些PC上你可能看到类似RTL2832UHDIR或者RTL2832U而不是Bulk in Interface，这个选项也是可以的）。但无论如何，都千万不要选择“USB Receiver (Interface 0)”
+
+  ![zadig_3.png](https://www.rtl-sdr.com/wp-content/uploads/2013/04/zadig_3.png)
+
+6. 选择安装驱动。也许你会看到一条有关无法验证的发布者的提示信息，选择无论如何安装。这将会安装软件定义收音机所必要的驱动。请注意，假如你将接收器移动到了另一个USB口，或者想要同时使用几个接收器的话，就得重新运行Zadig。
+
+  ![zadig_warning.png](https://www.rtl-sdr.com/wp-content/uploads/2013/04/zadig_warning.png)
+
+7. 从网站获取SDR-RADIO installer：[Downlaod SDR-Radio](http://v2.sdr-radio.com/Software/Download1)
+
+  (译注：2021年4月29日 05:59:07测试，该地址内容不可获取，服务器[http://v2.sdr-radio.com/](http://v2.sdr-radio.com/)似乎已经无法正常工作)
+
+  (译注：根据某全球搜索引擎提供的结果，类似的软件现在可能是在[sdr-radio.com](https://www.sdr-radio.com/old-kits)处提供，但是对此链接不作任何保证，请自行鉴别自己负责，或者自行寻找软件源)
+
+8. 使用安装程序安装SDR-RADIO
+
+9. 下载[RTL-SDR支持库](https://m3ghe.blogspot.com/p/adding-support-for-rtl-sdr-usb-dongles.html)，或者从[镜像](https://mega.nz/#!X8p3wbZa!rnpXTq2FBJ6HfB3f3QBhxf10K2no3xNigRNK5waAwsM)处下载
+
+10. 打开下载的压缩文件，对于 AMD64 / x86_64 计算机，
+
+   如果安装了64位RTL-SDR软件，在`C:\Program Files\SDR-RADIO-PRO.com`处解压`x64`文件夹中的`SDRSourceRTL2832U.dll` `rtlsdr.dll` `libusb-1.0.dll`文件，
+   
+   如果安装了32位RTL-SDR软件，在`C:\Program Files (x86)\SDR-RADIO-PRO.com`处解压`x32`文件夹中的`SDRSourceRTL2832U.dll` `rtlsdr.dll` `libusb-1.0.dll`文件，
+    
+ 对于32位 x86 计算机，请解压`x32`文件夹中的`SDRSourceRTL2832U.dll` `rtlsdr.dll` `libusb-1.0.dll`文件到`C:\Program Files\SDR-RADIO-PRO.com`
+
+ (这里没有按照原文翻译，因为我认为原文的操作是错的)
+
+ > 原文
+
+ > Extract the SDRSourceRTL2832U.dll, rtlsdr.dll and libusb-1.0.dll files from the x64 folder into the C:\Program Files\SDR-RADIO-PRO.com folder. Or if you have a 32-bit PC extract the files from the x32 folder into C:\Program Files (x86)\SDR-RADIO-PRO.com folder.
+
 
 
 ------------------------------------------

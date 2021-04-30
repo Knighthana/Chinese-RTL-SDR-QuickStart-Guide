@@ -414,6 +414,28 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
  > Extract the SDRSourceRTL2832U.dll, rtlsdr.dll and libusb-1.0.dll files from the x64 folder into the C:\Program Files\SDR-RADIO-PRO.com folder. Or if you have a 32-bit PC extract the files from the x32 folder into C:\Program Files (x86)\SDR-RADIO-PRO.com folder.
 
+11. 打开SDR-RADIO。之后你会首先看到一个选择收音机的窗口，以及一条“List is empty - add radio definition now?”(列表为空，是否现在添加收音机？)选Yes，如果没有出现这个提示，点击“+ Definitions”按钮。
+
+12. 在新出现的窗口打开“Search”(搜索)下拉菜单，选择RTL SDR(USB)。操作完成之后应该会看到RTL-SDR被添加到Radio Definitons列表中，点击OK保存退出
+
+  ![Radio Definitions Search List](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image030.jpg)
+
+  ![Radio Definitions List](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image031.jpg)
+
+13. 在RTL-SDR上点击，点一次选中它，在下面选择你想要的采样率，然后点击“开始”
+
+  ![Select Radio](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image032.jpg)
+
+14. 点击Span按钮，将跨度调整到你上一步里设置的采样率带宽，这将会让你看到整个频谱。
+
+  ![Span and Spectrum](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image033.jpg)
+
+15. 如果需要调整接收模式的话，使用在frequency标签下面左侧的菜单。在这里你也可以调整信号带宽，典型的NFM(窄带FM)信号应该在12kHz宽左右，而典型的FM广播信号应该在192kHz宽左右。
+
+  ![Frequency Explorer](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image034.jpg)
+
+16. 如果需要调整频率的话，使用右边的VFO tuning
+
 
 
 ------------------------------------------

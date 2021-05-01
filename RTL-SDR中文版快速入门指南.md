@@ -434,9 +434,16 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
   ![Frequency Explorer](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image034.jpg)
 
-16. 如果需要调整频率的话，使用右边的VFO tuning
+16. 如果需要调整频率的话，使用右边的VFO tuning窗口，如果你没看到的话，也许需要点击VFO tuning标签来让它显示，或者也许是你的窗口过小的原因，你可能需要扩展窗口让它显示出来。你也可以立刻点击滑动条来立刻调整到你想要的频率。
+
+  ![VFO tuning Box](https://www.rtl-sdr.com/wp-content/uploads/2013/04/image035.jpg)
+
+17. 请确保已用Home标签下方区域顶部的射频增益按钮调整过射频增益。默认情况下它会被设置为自动调整。
+
+  ![RF Gain Button](https://www.rtl-sdr.com/wp-content/uploads/2013/04/sdrconsolegain.png)
 
 
+18. 
 
 ------------------------------------------
 

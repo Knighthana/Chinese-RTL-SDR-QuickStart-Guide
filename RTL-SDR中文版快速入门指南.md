@@ -392,9 +392,9 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
 7. 从网站获取SDR-RADIO installer：[Downlaod SDR-Radio](http://v2.sdr-radio.com/Software/Download1)
 
-  (译注：2021年4月29日 05:59:07测试，该地址内容不可获取，服务器[http://v2.sdr-radio.com/](http://v2.sdr-radio.com/)似乎已经无法正常工作)
+    (译注：2021年4月29日 05:59:07测试，该地址内容不可获取，服务器[http://v2.sdr-radio.com/](http://v2.sdr-radio.com/)似乎已经无法正常工作)
 
-  (译注：根据某全球搜索引擎提供的结果，类似的软件现在可能是在[sdr-radio.com](https://www.sdr-radio.com/old-kits)处提供，但是对此链接不作任何保证，请自行鉴别自己负责，或者自行寻找软件源)
+    (译注：根据某全球搜索引擎提供的结果，类似的软件现在可能是在[sdr-radio.com](https://www.sdr-radio.com/old-kits)处提供，但是对此链接不作任何保证，请自行鉴别自己负责，或者自行寻找软件源)
 
 8. 使用安装程序安装SDR-RADIO
 

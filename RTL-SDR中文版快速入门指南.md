@@ -370,7 +370,118 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
   - 将输出采样率调整为192000Hz，就能收听FM广播了。
 
-### SDR-RAIDO V2 搭建指南（已在Windows XP及以上版本的系统经过测试）
+
+### Cubic SDR 指南（已在Windows XP及以上版本的系统经过测试）
+
+1. 买一个RTL-SDR接收器。最便宜也是最好的选择是R820T/R820T2接收器，此处提供了[购买信息](https://www.rtl-sdr.com/buy-rtl-sdr-dvb-t-dongles/)
+
+2. 插入接收器，不要安装它自带的任何软件，确保“即插即用程序”停止尝试为它自动安装驱动，如果你已经安装了任何它携带的驱动，先卸载它们
+
+3. 前往[Zadig网站](https://zadig.akeo.ie/)下载Zadig
+
+4. 打开Zadig，前往选项->列出所有设备，确保所有选项已被选上 
+
+5. 在下拉菜单中选择“Bulk-In, Interface(Interface 0)”。在有些个人计算机上，你可能会看到诸如“RTL2832UHIDIR”或者“RTL2832U”而不是前述的选项，那就选择这样的选项。进行下一步前先反复确认USB ID已经显示为“0BDA 2838 00”，这就说明接收器已经被选中了。
+
+**警告** 不要选择任何其它的选项，不要对其他选项做出操作，不然的话你可能会覆写掉其他设备的驱动。不要在Zadig上漫无目的地点击，否则鼠标、键盘或者音频播放器之类的USB设备会因此而无法正常工作。
+
+6. 选择安装驱动。也许你会看到一条有关无法验证的发布者的提示信息，选择无论如何安装。这将会安装软件定义收音机所必要的驱动。请注意，假如你将接收器移动到了另一个USB口，或者想要同时使用几个接收器的话，就得重新运行Zadig。
+
+  ![zadig_warning.png](https://www.rtl-sdr.com/wp-content/uploads/2013/04/zadig_warning.png)
+
+7. 前往[cubicsdr.com](https://cubicsdr.com/)，进入下载页面。找到软件的最新版本。根据你的Windows操作系统的情况选择合适的下载对象。
+
+8. 运行CubicSDR的安装向导。
+
+9. 向计算机上插入接收器，然后运行安装好的CubicSDR软件。
+
+10. 你将会看到一个SDR设备的目录，在其中选择你的RTL-SDR然后点击“使用选中的选项”("Use Selected", English Version, 注)按钮。
+
+11. CubicSDR将会自动开始工作。
+
+12. 在频谱瀑布上随意点击并收听。
+
+###  其他能够与RTL-SDR兼容的Windows上SDR软件
+
+你可以在[软件向导](https://www.rtl-sdr.com/big-list-rtl-sdr-supported-software/)处找到其他兼容RTL-SDR的软件
+
+## 在Linux上开始你的SDR
+
+对于Linux用户我们建议你首先看[Ranous的快速入门指南文档](https://ranous.files.wordpress.com/2018/02/rtl-sdr4linux_quickstartv2-18.pdf)(PDF文档)。
+
+对于Debian系Linux用户，最简单的方式是通过`apt-get`安装RTL-SDR。我们建议使用最现代化的Linux操作系统以便找到合适的驱动。
+
+（译者：什么叫 the most modern version of Linux OS 啊， Latest么？ 以及有没有驱动还是得看发行版软件仓库的情况）
+
+你可以通过如下命令在Debian系Linux上安装RTL-SDR：
+
+`sudo apt-get update`
+
+`sudo apt-get install rtl-sdr`
+
+手动安装RTL-SDR驱动的方法见[Rtl-sdr - rtl-sdr - Open Source Mobile Communications](https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr)。
+
+我们在下面摘录了指令的部分：
+
+`sudo apt-get install libusb-1.0-0-dev git cmake`
+
+`git clone git://git.osmocom.org/rtl-sdr.git`
+
+`cd rtl-sdr/`
+
+`mkdir build`
+
+`cd build`
+
+`cmake ../ -DINSTALL_UDEV_RULES=ON`
+
+`make`
+
+`sudo make install`
+
+`sudo cp ../rtl-sdr.rules /etc/udev/rules.d/`
+
+`sudo ldconfig`
+
+安装这些库之后，你应当卸除一般会被Linux默认使用的DVB-T驱动。你可以用指令`sudo rmmod dvb_usb_rtl28xxu`来暂时地卸除这些驱动。该指令的效果会在你重新插入接收器，或者重启计算机之后失效，届时DVB-T驱动将会重新加载。
+
+如果你想永久禁用DVB-T驱动，可以在`/etc/modprobe.d`目录下编辑名为`rtlsdr.conf`的文本文档（如果不存在就创建该文档），在其中添加一行`blacklist dvb_usb_rtl28xxu`，以便屏蔽DVB-T驱动。
+
+你可以运行如下指令，以便使计算机自动执行能实现上述效果的类似操作：
+
+`echo 'blacklist dvb_usb_rtl28xxu' | sudo tee – append /etc/modprobe.d/blacklist-dvb_usb_rtl28xxu.conf`
+
+现在你可以重启你的计算机（原文为Device意指设备，根据语义应为计算机）了。待计算机进入待命状态之后，插入接收器并在终端执行`rtl_test`，它就应该可以开始运行了。
+
+某些设备例如Orange Pi zero的当前主流发行版操作系统（原文"current mainline OSes"，并没有说具体哪个版本，也没有提时效性）中也许存在某些瑕疵，因此在这些操作系统中，你可能会需要用`blacklist dvb_usb_rtl2832u`语句代替上述`blacklist dvb_usb_rtl28xxu`语句。
+
+如果你是通过`apt-get`自动安装驱动和软件的，你也会需要按上述操作手动编辑或创建`/etc/modprobe.d/rtl-sdr-blacklist.conf`屏蔽DVB-T驱动。
+
+在安装了二进制资源库并且屏蔽了DVB-T驱动之后，我们建议你从"GQRX"开始，"GQRX"是一个在操作方面类似"SDR#"的SDR软件。你可以通过自己使用的发行版操作系统包管理器从软件仓库下载安装，或者从[Download Gqrx SDR – Gqrx SDR](https://gqrx.dk/download)下载。
+
+我们也推荐使用跨平台的CubicSDR，你可以通过[CubicSDR | Cross-Platform and Open-Source Software Defined Radio Application](https://cubicsdr.com/)下载。
+
+如果你想使用GNU Radio我们推荐你使用Marcus Leech的脚本，你可以通过这条指令执行这个脚本。该脚本也会同时帮助你安装RTL-SDR的驱动。
+
+`wget http://www.sbrac.org/files/build-gnuradio && chmod a+x ./build-gnuradio && ./build-gnuradio`
+
+注意，如果你在虚拟机中运行Linux，VirtualBox糟糕的USB传输速度表现让它不是一个好的选择，Vmware Player虚拟机的USB传输速度比较令人满意因此可以获得不错的SDR表现，但这需要你将默认虚拟机硬件设置中的使用USB1.1协议更改为使用USB2.0协议。
+
+上面提到的Kenn Ranous还写过另外一本不错的教程[rtl-sdr4linux_quickstartv10-16](https://ranous.files.wordpress.com/2016/03/rtl-sdr4linux_quickstartv10-16.pdf)（pdf）。
+
+## 在OSX上开始使用RTL-SDR
+
+由于OSX上的SDR软件有非常严重的缺陷，我们建议在其他平台例如Linux或者Windows上搭建和使用SDR。
+
+然而[GQRX，一个SDR软件](https://gqrx.dk/download)在OSX上表现良好。
+
+[跨平台的CubicSDR](https://cubicsdr.com/)也是一个在OSX上使用SDR的选择。
+
+（译者：所以有严重缺陷的是哪个？brew install来的吗？）
+
+----------------------------------------------------------------
+
+### （已被原网站删除，因此本部分残缺，可以跳过）SDR-RAIDO V2 搭建指南（已在Windows XP及以上版本的系统经过测试）
 
 为了给RTL-SDR系统安装SDR-RADIO需要按照以下指南操作：
 
@@ -445,6 +556,30 @@ SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安�
 
 18. 
 
-------------------------------------------
+--------------------------------------------------------
+
+## 更多
+
+![The Hobbyist's Guide to the RTL-SDR: Really Cheap Software Defined Radio](https://www.rtl-sdr.com/wp-content/uploads/2013/04/The-Hobbyists-Guide-PSD-_-MODDED_THUMB1.png?ffccfa&ffccfa)
+
+[Picture's Amazon Link](https://www.amazon.com/gp/product/B00KCDF1QI/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00KCDF1QI&linkCode=as2&tag=book0674-20&linkId=RSP53QLYXP4IS32X)
+
+如果你需要一本更全面的有关RTL-SDR的书籍，你可能会对我们在Amazon上出售的书籍感兴趣。这本书有实体版和电子版以供使用。
+
+[业余爱好者们的RTL-SDR指南：物美价廉的软件定义收音机](https://www.amazon.com/gp/product/B00KCDF1QI/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00KCDF1QI&linkCode=as2&tag=book0674-20&linkId=RSP53QLYXP4IS32X)
+
+---------------------------------------------------------
+
+[Share on Twitter](https://twitter.com/intent/tweet?text=Quick+Start+Guide&url=https%3A%2F%2Fwww.rtl-sdr.com%2Frtl-sdr-quick-start-guide%2F)
+
+[Share on Facebook](https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.rtl-sdr.com%2Frtl-sdr-quick-start-guide%2F)
+
+[Share on Reddit](https://www.reddit.com/submit?url=https%3A%2F%2Fwww.rtl-sdr.com%2Frtl-sdr-quick-start-guide%2F)
+
+[Share on Vote](https://news.ycombinator.com/submitlink?u=https%3A%2F%2Fwww.rtl-sdr.com%2Frtl-sdr-quick-start-guide%2F&t=Quick%20Start%20Guide)
+
+[Share via E-mail](mailto:?subject=Quick%20Start%20Guide&body=This%20page%20is%20a%20guide%20aimed%20at%20helping%20anyone%20set%20up%20a%20cheap%20radio%20scanner%20based%20on%20the%20RTL-SDR%20software%20defined%20radio%20as%20fast%20as%20possible%20on%20a%20Windows%20system.%20If%20you%20have%20any%20trouble%20during%20the%20installation%2C%20please%20see%20the%20troubleshooting%20guide%20further%20down%20the%20page.%C2%A0We%20also%20have%20brief%20instructions%20for%20getting%20started%20on%20Linux%20and%20OSX%20at%20the%C2%A0end%C2%A0of%20this%20page.%20Please%20note%20that%20the%20RTL-SDR%20is%20not%20a%C2%A0plug%20and%20play%20device.%20You%20will%20need%20to%20have%20sufficient%C2%A0skills%20to%C2%A0perform%20basic%20PC%20operations%20such%20as%20unzipping%20files%2C%20installing%20software%2C%20moving%20and%20copying%20files%20and%20have%20the%20motivation%C2%A0to%20learn%C2%A0new%20software.%20%2A%2A%2A%2A%2A%2A%2A%0D%0A%0D%0ARead More Here: %20https%3A%2F%2Fwww.rtl-sdr.com%2Frtl-sdr-quick-start-guide%2F)
+
+-----------------------------------------------------------------------------------------------------------
 
 暂时先翻译到这里，原网页下面还有许多问题和解决方案，更新前如果遇到更多问题先查阅[英文原文](https://www.rtl-sdr.com/rtl-sdr-quick-start-guide/)

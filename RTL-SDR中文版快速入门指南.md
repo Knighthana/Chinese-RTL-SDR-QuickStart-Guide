@@ -63,7 +63,7 @@ RTL-SDR Blog V3 用户：请注意存在假冒伪劣产品。有奸商在我们�
 
 SDR# 是最推荐在Windows上使用的SDR程序，我们因为它在易于安装使用方面和在与RTL-SDR兼容性比较好方面的原因推荐它。
 
-1. 购买一个RTL-SDR解密狗，最便宜且应用广泛的是R820T/R820T2，附上[购买信息](https://www.rtl-sdr.com/buy-rtl-sdr-dvb-t-dongles/)
+1. 购买一个RTL-SDR接收器，最便宜且应用广泛的是R820T/R820T2，附上[购买信息](https://www.rtl-sdr.com/buy-rtl-sdr-dvb-t-dongles/)
 
 2. 你需要4.6及以上版本的 Microsoft .Net Framework，Win10已经预装了此环境，Win10以下版本尚未安装此环境的，可在此处下载[.Net Framework](https://www.microsoft.com/en-us/download/details.aspx?id=55167) ，Windows XP不支持此环境，XP用户请跳过本段，查看HDSDR或SDR-Console的安装教程，如果你的电脑没有安装 [Microsoft VC++ Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=8328)，你也需要一并安装。
 
